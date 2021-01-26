@@ -2,12 +2,12 @@
 #include <string>
 using namespace std;
 
-int userInput(int& length);
-void conversion(int feet, int inches, float& meters, float& centi);
+float userInput(float& length);
+void conversion(float feet, float inches, float& meters, float& centi);
 void userOutput(float& meters, float& centi);
 
 //function for user input
-int userInput(int& length) {
+float userInput(float& length) {
 	//While the user input is invalid (not an int)
 	while(!(cin >> length)) {
 			cout << "Not valid length. ";
@@ -21,15 +21,11 @@ int userInput(int& length) {
 
 //values of feet and inches passed by reference
 //meters and centi are passed by reference since we are setting the variables in function
-void conversion(int feet, int inches, float& meters, float& centi){
+void conversion(float feet, float inches, float& meters, float& centi){
 	meters = 0; //reset to 0 in case they continue to enter more
 	centi = 0;
-	centi = ((feet * 12) + inches) * 2.54; //first convert the length into centimeters
-	//while loop converts total centimeters into meters and centimeters
-	while (centi >= 100) {
-		centi -= 100;
-		++meters;
-	}
+	meters = (feet * 0.3048) + (inches * 0.0254);
+	centi = meters * 0.01;
 }
 
 //Output of the values of meters and centimeters
@@ -41,8 +37,8 @@ void userOutput(float& meters, float& centi){
 
 int main(int argc, char**argv){
 	string input = "";
-	int feet;
-	int inches;
+	float feet;
+	float inches;
 	float meters;
 	float centi;
 	//Code continues to run while the output of the user is not 'exit'

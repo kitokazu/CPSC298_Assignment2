@@ -8,12 +8,12 @@ float addTax(float taxRate, float cost) {
 }
 
 int main(int argc, char **argv){
-	float tax;
-	float price;
-	cout << "Enter tax rate (float)" << endl;
-	cin >> tax;
-	cout << "Enter amount before price (price)" << endl;
-	cin >> price;
-	//Takes the tax rate and price and calls the function using the inputs as arguments
+	//if the user does not enter the command line parameters correctly
+	if (argc != 3) {
+		cerr << "Error: please enter the tax rate and then price as command line parameters" << endl;
+	}
+	//command line parameters
+	float tax = atoi(argv[1]);
+	float price = atoi(argv[2]);
 	cout << "Final cost: $" << addTax(tax, price) << endl;
 }
